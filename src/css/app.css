@@ -1,0 +1,199 @@
+/* app global css */
+@import '../statics/icomoon/style.css';
+/* Quasar Colors */
+.text-poke-primary {
+  color: #ea5d60 !important;
+}
+.bg-poke-primary {
+  background: #ea5d60 !important;
+}
+
+.text-p-black {
+  color: #17171b !important;
+}
+.text-p-gray {
+  color: #747476 !important;
+}
+.text-p-number {
+  color: rgba(23, 23, 27, 0.6) !important;
+}
+
+.bg-default-input {
+  background: #f7f7f7 !important;
+}
+
+.bg-pressed-input {
+  background: #e9e9e9 !important;
+}
+.text-pressed-input {
+  color: #e9e9e9 !important;
+}
+
+.bg-modal {
+  background: rgba(0, 0, 0, 0.25) !important;
+}
+
+:root {
+  /* Colors */
+  --type-bug: #8cb230;
+  --type-dark: #58575f;
+  --type-dragon: #0f6ac0;
+  --type-electric: #eed535;
+  --type-fairy: #ed6ec7;
+  --type-fighting: #d04164;
+  --type-fire: #fd7d24;
+  --type-flying: #748fc9;
+  --type-ghost: #556aae;
+  --type-grass: #62b957;
+  --type-ground: #dd7748;
+  --type-ice: #61cec0;
+  --type-normal: #9da0aa;
+  --type-poison: #a552cc;
+  --type-psychic: #ea5d60;
+  --type-rock: #baab82;
+  --type-steel: #417d9a;
+  --type-water: #4a90da;
+
+  /* Background Type Colors */
+  --background-type-bug: #8bd674;
+  --background-type-dark: #6f6e78;
+  --background-type-dragon: #7383b9;
+  --background-type-electric: #f2cb55;
+  --background-type-fairy: #eba8c3;
+  --background-type-fighting: #eb4971;
+  --background-type-fire: #ffa756;
+  --background-type-flying: #83a2e3;
+  --background-type-ghost: #8571be;
+  --background-type-grass: #8bbe8a;
+  --background-type-ground: #f78551;
+  --background-type-ice: #91d8df;
+  --background-type-normal: #b5b9c4;
+  --background-type-poison: #9f6e97;
+  --background-type-psychic: #ff6568;
+  --background-type-rock: #d4c294;
+  --background-type-steel: #4c91b3;
+  --background-type-water: #58abf6;
+
+  /* Background Gradient */
+  --gradient-vector: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  --gradient-pokeball: linear-gradient(180deg, #f5f5f5 50%, #ffffff 94.81%);
+  --gradient-vector-grey: linear-gradient(
+    115.06deg,
+    #e5e5e5 0%,
+    rgba(245, 245, 245, 0) 100%
+  );
+  --gradient-pokeball-grey: linear-gradient(158.2deg, #ececec 0%, #f5f5f5 100%);
+  --gradient-vector-white: linear-gradient(
+    115.57deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  --gradient-pokeball-white: linear-gradient(
+    158.2deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  --gradient-pokemon-name: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 76.04%
+  );
+  --gradient-pokemon-circle: linear-gradient(
+    349.24deg,
+    rgba(255, 255, 255, 0.35) 16.24%,
+    rgba(255, 255, 255, 0) 44.6%
+  );
+
+  /* height Colors */
+  --height-short: #ffc5e6;
+  --height-medium: #aebfd7;
+  --height-tall: #aaacb8;
+
+  /* Weight Color */
+  --weight-light: #99cd7c;
+  --weight-normal: #57b2dc;
+  --weight-heavy: #5a92a5;
+
+  /* Background colors */
+  --background-white: #fff;
+  --background-default-input: #f2f2f2;
+  --background-pressed-input: #e2e2e2;
+  --background-modal: rgba(0, 0, 0, 0.25);
+
+  /* Text Colors */
+  --text-white: #fff;
+  --text-black: #17171b;
+  --text-gray: #747476;
+  --text-number: rgba(23, 23, 27, 0.6);
+}
+
+/* Typography */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../statics/fonts/sf-pro-display-bold.ttf');
+  font-style: bold;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../statics/fonts/sf-pro-display-medium.ttf');
+  font-style: medium;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../statics/fonts/sf-pro-display-regular.ttf');
+  font-style: normal;
+}
+
+.title-poke {
+  font-family: 'SF Pro Display';
+  font-style: bold;
+  font-weight: bold;
+  font-size: 100px;
+  line-height: 119px;
+}
+.application-title {
+  font-family: 'SF Pro Display';
+  font-style: bold;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 38px;
+}
+.pokemon-name {
+  font-family: 'SF Pro Display';
+  font-style: bold;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 38px;
+}
+.filter-title {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+}
+.description-poke {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+}
+.pokemon-number {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+}
+.pokemon-type {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+}

@@ -1,0 +1,129 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?f87eqe');
+  src:  url('fonts/icomoon.eot?f87eqe#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?f87eqe') format('truetype'),
+    url('fonts/icomoon.woff?f87eqe') format('woff'),
+    url('fonts/icomoon.svg?f87eqe#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-x3:before {
+  content: "\e91e";
+}
+.icon-x5:before {
+  content: "\e91f";
+}
+.icon-circle:before {
+  content: "\e920";
+}
+.icon-pokeball:before {
+  content: "\e921";
+}
+.icon--heavy:before {
+  content: "\e900";
+}
+.icon--light:before {
+  content: "\e901";
+}
+.icon--normal:before {
+  content: "\e902";
+}
+.icon--medium:before {
+  content: "\e903";
+}
+.icon--short:before {
+  content: "\e904";
+}
+.icon--tall:before {
+  content: "\e905";
+}
+.icon-back:before {
+  content: "\e906";
+}
+.icon-filter:before {
+  content: "\e907";
+}
+.icon-front:before {
+  content: "\e908";
+}
+.icon-generation:before {
+  content: "\e909";
+}
+.icon-search:before {
+  content: "\e90a";
+}
+.icon-sort:before {
+  content: "\e90b";
+}
+.icon-bug:before {
+  content: "\e90c";
+}
+.icon-dark:before {
+  content: "\e90d";
+}
+.icon-dragon:before {
+  content: "\e90e";
+}
+.icon-electric:before {
+  content: "\e90f";
+}
+.icon-fairy:before {
+  content: "\e910";
+}
+.icon-fighting:before {
+  content: "\e911";
+}
+.icon-fire:before {
+  content: "\e912";
+}
+.icon-flying:before {
+  content: "\e913";
+}
+.icon-ghost:before {
+  content: "\e914";
+}
+.icon-grass:before {
+  content: "\e915";
+}
+.icon-ground:before {
+  content: "\e916";
+}
+.icon-ice:before {
+  content: "\e917";
+}
+.icon-normal:before {
+  content: "\e918";
+}
+.icon-poison:before {
+  content: "\e919";
+}
+.icon-psychic:before {
+  content: "\e91a";
+}
+.icon-rock:before {
+  content: "\e91b";
+}
+.icon-steel:before {
+  content: "\e91c";
+}
+.icon-water:before {
+  content: "\e91d";
+}
