@@ -1,5 +1,5 @@
 <h1 align="center">
-# Pokedex
+# Quasar Pokedex
 </h1>
 
 <p align="center">
