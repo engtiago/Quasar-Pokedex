@@ -23,8 +23,12 @@
           placeholder="What Pokémon are you looking for?"
         ></p-input>
         <div class="row q-pt-sm">
-          <div v-for="i in 5" :key="i" class="col-12 col-md-6 col-lg-4 q-px-xs q-pt-sm">
-            <card-pokemon :IDPoke="i" class="q-mt-md"></card-pokemon>
+          <div
+            v-for="i in allPokemons"
+            :key="i.id"
+            class="col-12 col-md-6 col-lg-4 q-px-xs q-pt-sm"
+          >
+            <card-pokemon :IDPoke="i.id" class="q-mt-md"></card-pokemon>
           </div>
         </div>
       </div>
@@ -140,6 +144,7 @@
 </template>
 
 <script>
+import DB from '../assets/database.json'
 import PokeBall from '../components/PokeBall'
 import pInput from '../components/input/pInput'
 import cardPokemon from '../components/card/cardPokemon'
@@ -166,7 +171,7 @@ export default {
   data () {
     return {
       SheetGeneration: false,
-      generationSelected: 0,
+      generationSelected: 1,
       SheetSort: false,
       SheetSortOP: {
         smallNumber: true,
@@ -201,7 +206,9 @@ export default {
   },
   methods: {
     searchPokemons () {
-      console.log(this.search)
+      // console.log(this.search)
+      var teste = DB.filter(record => record.name.toLowerCase().includes(this.search.toLowerCase()))
+      console.log(teste)
     },
     myEventHandler (e) {
       this.topPokeball = this.$refs.pokeball.offsetHeight
@@ -217,6 +224,14 @@ export default {
     },
     generationHandler (value) {
       this.generationSelected = value
+    }
+  },
+  computed: {
+    allPokemons () {
+      if (this.generationSelected === 1) {
+
+      }
+      return DB.filter(result => result.id <= 151)
     }
   },
   mounted () {

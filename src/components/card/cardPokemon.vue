@@ -24,8 +24,9 @@
 </template>
 
 <script>
+import DB from '../../assets/database.json'
 import pBadge from '../badge/pBadge'
-import PokeService from '../../services/PokeService'
+// import PokeService from '../../services/PokeService'
 export default {
   name: 'cardPokemon',
   components: {
@@ -38,7 +39,7 @@ export default {
   },
   data () {
     return {
-      PokeService: new PokeService(),
+      // PokeService: new PokeService(),
       types: [''],
       name: ''
     }
@@ -48,18 +49,22 @@ export default {
       this.$router.push({ path: `pokemon/${this.IDPoke}` })
     },
     getPokemon () {
-      this.PokeService.show(this.IDPoke)
-        .then(res => {
-          this.name = this.firstLetterUperCase(res.forms[0].name)
+      const pokemon = DB.find(result => result.id === this.IDPoke)
+      this.types = pokemon.types
+      this.name = pokemon.name
 
-          this.types = []
-          res.types.forEach(el => {
-            this.types[el.slot - 1] = el.type.name
-            // console.log(el.type.name)
-          })
-        }).catch(err => {
-          console.log(err)
-        })
+      // this.PokeService.show(this.IDPoke)
+      //   .then(res => {
+      //     this.name = this.firstLetterUperCase(res.forms[0].name)
+
+      //     this.types = []
+      //     res.types.forEach(el => {
+      //       this.types[el.slot - 1] = el.type.name
+      //       // console.log(el.type.name)
+      //     })
+      //   }).catch(err => {
+      //     console.log(err)
+      //   })
     },
     firstLetterUperCase (string) {
       return string.charAt(0).toUpperCase() + string.slice(1)
