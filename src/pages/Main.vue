@@ -379,6 +379,7 @@ export default {
       }
 
       this.allPokemons = value
+      this.allPokemons = this.sortSelect()
     },
     searchPokemons () {
       if (this.search === '') {
