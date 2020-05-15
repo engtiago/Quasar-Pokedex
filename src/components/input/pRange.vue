@@ -42,7 +42,7 @@ export default {
     }
   },
   watch: {
-    inputValue () {
+    rangeValue () {
       this.updateValue(this.rangeValue)
     }
   }

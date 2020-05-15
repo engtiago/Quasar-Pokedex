@@ -91,11 +91,11 @@
           horizontal
           style="height: 50px; width: 100%;"
           class="q-mb-md"
-          :thumb-style="{opacity: 0}"
+          :thumb-style="{opacity: 0.1,height:'4px'}"
         >
           <div style="display: flex;">
             <div class="q-mr-sm" v-for="type in types" :key="type">
-              <p-type-btn :types="type" :selected="false"></p-type-btn>
+              <p-type-btn @click="typeFilter" :types="type" :selected="filtersTypeOP[type]"></p-type-btn>
             </div>
           </div>
         </q-scroll-area>
@@ -104,38 +104,67 @@
           horizontal
           style="height: 50px; width: 100%;"
           class="q-mb-md"
-          :thumb-style="{opacity: 0}"
+          :thumb-style="{opacity: 0.1,height:'4px'}"
         >
           <div style="display: flex;">
             <div class="q-mr-sm" v-for="type in types" :key="type">
-              <p-type-btn :types="type" :selected="false"></p-type-btn>
+              <p-type-btn @click="weaknessFilter" :types="type" :selected="filtersWeaknessOP[type]"></p-type-btn>
             </div>
           </div>
         </q-scroll-area>
         <p class="filter-title">Heights</p>
         <div class="q-mb-md" style="display: flex;">
-          <p-height-btn class="q-mr-md" types="short" :selected="false"></p-height-btn>
-          <p-height-btn class="q-mr-md" types="medium" :selected="false"></p-height-btn>
-          <p-height-btn class="q-mr-md" types="tall" :selected="true"></p-height-btn>
+          <p-height-btn
+            @click="heightFilter"
+            class="q-mr-md"
+            types="short"
+            :selected="filtersHeightsOP.short"
+          ></p-height-btn>
+          <p-height-btn
+            @click="heightFilter"
+            class="q-mr-md"
+            types="medium"
+            :selected="filtersHeightsOP.medium"
+          ></p-height-btn>
+          <p-height-btn
+            @click="heightFilter"
+            class="q-mr-md"
+            types="tall"
+            :selected="filtersHeightsOP.tall"
+          ></p-height-btn>
         </div>
         <p class="filter-title">Weights</p>
         <div class="q-mb-md" style="display: flex;">
-          <p-weight-btn class="q-mr-md" types="light" :selected="false"></p-weight-btn>
-          <p-weight-btn class="q-mr-md" types="normal" :selected="true"></p-weight-btn>
-          <p-weight-btn class="q-mr-md" types="heavy" :selected="false"></p-weight-btn>
+          <p-weight-btn
+            @click="weightFilter"
+            class="q-mr-md"
+            types="light"
+            :selected="filtersWeightsOP.light"
+          ></p-weight-btn>
+          <p-weight-btn
+            @click="weightFilter"
+            class="q-mr-md"
+            types="normal"
+            :selected="filtersWeightsOP.normal"
+          ></p-weight-btn>
+          <p-weight-btn
+            @click="weightFilter"
+            class="q-mr-md"
+            types="heavy"
+            :selected="filtersWeightsOP.heavy"
+          ></p-weight-btn>
         </div>
 
         <p class="filter-title">Number Range</p>
         <div class="q-mb-md">
-          <p-range v-model="numRangeFilter" :min="0" :max="50"></p-range>
+          <p-range v-model="filters.range" :min="1" :max="maxRangeFIlter"></p-range>
         </div>
-
         <div class="row q-mt-lg">
           <div class="col">
             <p-btn class="q-ml-md" valueBtnDefaut="Reset" :selected="false"></p-btn>
           </div>
           <div class="col">
-            <p-btn class="q-ml-md" valueBtnDefaut="Apply" :selected="true"></p-btn>
+            <p-btn @click="applyFilter" class="q-ml-md" valueBtnDefaut="Apply" :selected="true"></p-btn>
           </div>
         </div>
       </div>
@@ -180,6 +209,65 @@ export default {
         ZA: false
       },
       SheetFilter: false,
+      maxRangeFIlter: DB.length,
+      filters: {
+        types: [],
+        weakness: [],
+        height: '',
+        weight: '',
+        range: { min: 1, max: DB.length },
+        value: []
+      },
+      filtersWeightsOP: {
+        light: false,
+        normal: false,
+        heavy: false
+      },
+      filtersHeightsOP: {
+        short: false,
+        medium: false,
+        tall: false
+      },
+      filtersTypeOP: {
+        bug: false,
+        dark: false,
+        dragon: false,
+        electric: false,
+        fairy: false,
+        fighting: false,
+        fire: false,
+        flying: false,
+        ghost: false,
+        grass: false,
+        ground: false,
+        ice: false,
+        normal: false,
+        poison: false,
+        psychic: false,
+        rock: false,
+        steel: false,
+        water: false
+      },
+      filtersWeaknessOP: {
+        bug: false,
+        dark: false,
+        dragon: false,
+        electric: false,
+        fairy: false,
+        fighting: false,
+        fire: false,
+        flying: false,
+        ghost: false,
+        grass: false,
+        ground: false,
+        ice: false,
+        normal: false,
+        poison: false,
+        psychic: false,
+        rock: false,
+        steel: false,
+        water: false
+      },
       search: '',
       pRange: {},
       types: [
@@ -201,14 +289,103 @@ export default {
         'rock',
         'steel',
         'water'
-      ]
+      ],
+      allPokemons: []
     }
   },
   methods: {
+    typeFilter (type) {
+      this.filtersTypeOP[type.type] = !type.selected
+      if (!type.selected) {
+        this.filters.types.push(type.type)
+      } else {
+        const index = this.filters.types.indexOf(type.type)
+        if (index > -1) {
+          this.filters.types.splice(index, 1)
+        }
+      }
+    },
+    weaknessFilter (type) {
+      this.filtersWeaknessOP[type.type] = !type.selected
+      if (!type.selected) {
+        this.filters.weakness.push(type.type)
+      } else {
+        const index = this.filters.weakness.indexOf(type.type)
+        if (index > -1) {
+          this.filters.weakness.splice(index, 1)
+        }
+      }
+    },
+    heightFilter (type) {
+      if (type.selected) {
+        this.filtersHeightsOP[type.type] = false
+        this.filters.height = ''
+      } else {
+        Object.keys(this.filtersHeightsOP).forEach(item => {
+          if (type.type === item) {
+            this.filtersHeightsOP[item] = true
+            this.filters.height = type.type
+          } else {
+            this.filtersHeightsOP[item] = false
+          }
+        })
+      }
+    },
+    weightFilter (type) {
+      if (type.selected) {
+        this.filtersWeightsOP[type.type] = false
+        this.filters.weight = ''
+      } else {
+        Object.keys(this.filtersWeightsOP).forEach(item => {
+          if (type.type === item) {
+            this.filtersWeightsOP[item] = true
+            this.filters.weight = type.type
+          } else {
+            this.filtersWeightsOP[item] = false
+          }
+        })
+      }
+    },
+    applyFilter () {
+      let value
+      function arrayCompare (first, last) {
+        return first.filter(item => last.indexOf(item) > -1).length > 0
+      }
+
+      value = DB.filter(result => result.id >= this.filters.range.min && result.id <= this.filters.range.max)
+      if (this.filters.types.length > 0) {
+        value = value.filter(poke => arrayCompare(poke.types, this.filters.types))
+      }
+      if (this.filters.weakness.length > 0) {
+        value = value.filter(poke => arrayCompare(poke.weaknesses, this.filters.weakness))
+      }
+      if (this.filters.height !== '') {
+        if (this.filters.height === 'short') {
+          value = value.filter(result => result.height <= 10)
+        } else if (this.filters.height === 'medium') {
+          value = value.filter(result => result.height >= 11 && result.height <= 30)
+        } else {
+          value = value.filter(result => result.height >= 31)
+        }
+      }
+      if (this.filters.weight !== '') {
+        if (this.filters.weight === 'light') {
+          value = value.filter(result => result.weight <= 500)
+        } else if (this.filters.weight === 'normal') {
+          value = value.filter(result => result.weight >= 501 && result.weight <= 1000)
+        } else {
+          value = value.filter(result => result.weight >= 1001)
+        }
+      }
+
+      this.allPokemons = value
+    },
     searchPokemons () {
-      // console.log(this.search)
-      var teste = DB.filter(record => record.name.toLowerCase().includes(this.search.toLowerCase()))
-      console.log(teste)
+      if (this.search === '') {
+        this.generationHandler(1)
+      } else {
+        this.allPokemons = DB.filter(record => record.name.toLowerCase().includes(this.search.toLowerCase()))
+      }
     },
     myEventHandler (e) {
       this.topPokeball = this.$refs.pokeball.offsetHeight
@@ -221,20 +398,52 @@ export default {
           this.SheetSortOP[item] = false
         }
       })
+      this.allPokemons = this.sortSelect()
+    },
+    sortSelect () {
+      if (this.SheetSortOP.smallNumber) {
+        const smallNumbercomparator = (propName) => (a, b) => a[propName] - b[propName]
+        return this.allPokemons.sort(smallNumbercomparator('id'))
+      } else if (this.SheetSortOP.highNumber) {
+        const highNumbercomparator = (propName) => (a, b) => b[propName] - a[propName]
+        return this.allPokemons.sort(highNumbercomparator('id'))
+      } else if (this.SheetSortOP.AZ) {
+        const AZcomparator = (propName) => (a, b) => a[propName].toLowerCase() === b[propName].toLowerCase() ? 0 : a[propName].toLowerCase() < b[propName].toLowerCase() ? -1 : 1
+        return this.allPokemons.sort(AZcomparator('name'))
+      } else if (this.SheetSortOP.ZA) {
+        const AZcomparator = (propName) => (a, b) => a[propName].toLowerCase() === b[propName].toLowerCase() ? 0 : a[propName].toLowerCase() > b[propName].toLowerCase() ? -1 : 1
+        return this.allPokemons.sort(AZcomparator('name'))
+      }
     },
     generationHandler (value) {
       this.generationSelected = value
-    }
-  },
-  computed: {
-    allPokemons () {
+      this.allPokemons = this.generationfilter()
+      this.allPokemons = this.sortSelect()
+    },
+    generationfilter () {
+      let pokemons
       if (this.generationSelected === 1) {
-
+        pokemons = DB.filter(result => result.id <= 151)
+      } else if (this.generationSelected === 2) {
+        pokemons = DB.filter(result => result.id > 151 && result.id <= 251)
+      } else if (this.generationSelected === 3) {
+        pokemons = DB.filter(result => result.id > 251 && result.id <= 386)
+      } else if (this.generationSelected === 4) {
+        pokemons = DB.filter(result => result.id > 386 && result.id <= 493)
+      } else if (this.generationSelected === 5) {
+        pokemons = DB.filter(result => result.id > 493 && result.id <= 649)
+      } else if (this.generationSelected === 6) {
+        pokemons = DB.filter(result => result.id > 649 && result.id <= 721)
+      } else if (this.generationSelected === 7) {
+        pokemons = DB.filter(result => result.id > 721 && result.id <= 809)
+      } else if (this.generationSelected === 8) {
+        pokemons = DB.filter(result => result.id > 809 && result.id <= 890)
       }
-      return DB.filter(result => result.id <= 151)
+      return pokemons
     }
   },
-  mounted () {
+  created () {
+    this.generationHandler(1)
   }
 }
 </script>

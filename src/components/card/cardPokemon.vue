@@ -9,10 +9,10 @@
   >
     <q-card-section class="q-ml-sm">
       <p class="pokemon-number">#{{imgPoke}}</p>
-      <h2 class="pokemon-name">{{name}}</h2>
+      <h2 class="pokemon-name">{{firstLetterUperCase(name)}}</h2>
       <p-badge class="q-mr-xs" :types="type" v-for="type in types" :key="type"></p-badge>
       <q-img
-        :src="`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${imgPoke}.png`"
+        :src="`statics/pokemons/${imgPoke}.png`"
         spinner-color="grey-4"
         spinner-size="65px"
         class="img-card"

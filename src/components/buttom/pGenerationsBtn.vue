@@ -72,7 +72,6 @@ export default {
   methods: {
     EmitClick () {
       this.$emit('click')
-      console.log('teste')
     }
   }
 }

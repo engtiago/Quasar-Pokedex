@@ -3,6 +3,7 @@
     <p class="title-poke">Title</p>
     <button-defaut class="q-mb-md" valueBtnDefaut="Teste" :selected="false"></button-defaut>
     <range-defaut v-model="standard" :min="0" :max="50"></range-defaut>
+    {{standard}}
     <InputDefaut v-model="teste" placeholder="Meu input"></InputDefaut>
     <q-separator class="q-my-lg" />
     <div class="row">

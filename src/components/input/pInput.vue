@@ -48,7 +48,7 @@ export default {
       clearTimeout(this.timeout)
       this.timeout = setTimeout(() => {
         this.$emit('stopWrite')
-      }, 2500)
+      }, 500)
     }
   },
   watch: {

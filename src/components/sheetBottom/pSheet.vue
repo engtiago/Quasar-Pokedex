@@ -3,7 +3,7 @@
     <q-dialog class="col" v-model="dataControl" position="bottom">
       <div class="bar"></div>
       <q-card @click="cardFandleClick" class="card" :style="`width: 100%;height:${height}px;`">
-        <q-scroll-area @scroll="handleScroll" style="height: 100%;">
+        <q-scroll-area @scroll="handleScroll" style="height: 99%;">
           <slot></slot>
         </q-scroll-area>
       </q-card>

@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-btn
+      @click="handlerClick"
       v-if="selected"
       rounded
       flat
@@ -11,7 +12,15 @@
       <!-- box-shadow: 0px 10px 20px var(--type-${types}); tentar ver como fazer depois -->
       <span :class="`icon-size icon-${types}`"></span>
     </q-btn>
-    <q-btn :style="`color: var(--type-${types})`" v-else flat rounded class="btn-poke" no-caps>
+    <q-btn
+      @click="handlerClick"
+      :style="`color: var(--type-${types})`"
+      v-else
+      flat
+      rounded
+      class="btn-poke"
+      no-caps
+    >
       <span :class="`icon-size icon-${types}`"></span>
     </q-btn>
   </div>
@@ -28,6 +37,11 @@ export default {
     types: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    handlerClick () {
+      this.$emit('click', { type: this.types, selected: this.selected })
     }
   }
 }
