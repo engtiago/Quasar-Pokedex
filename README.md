@@ -6,7 +6,7 @@
   <img src="https://user-images.githubusercontent.com/19561240/81871794-eaf2f480-954e-11ea-91ec-425555dc8592.png" />
 </p>
 
-<strong>Welcome to the Pokédex App developed in Quasar! This is a project created to develop our skills as professionals, developers or designers.</strong>
+<strong>Welcome to the Pokédex App developed in Quasar! This is a project created to develop my skills as professional, developer and designer.</strong>
 
 # About
 
